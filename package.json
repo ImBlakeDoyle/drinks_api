@@ -1,0 +1,28 @@
+{
+  "name": "drinks_counter_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "server": "forever -c \"nodemon --exitcrash -L\" index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "forever": "^0.15.3",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.8"
+  },
+  "dependencies": {
+    "celebrate": "^9.0.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.3.16",
+    "mongoose-bcrypt": "^1.6.0",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0"
+  }
+}
