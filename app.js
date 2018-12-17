@@ -7,10 +7,9 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// app.use(cookieParser);
 
+require("./config/passport");
 app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(morgan("combined"));
 

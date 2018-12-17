@@ -1,17 +1,16 @@
 const UserModel = require("./../database/models/user_model");
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 async function create(req, res) {
     const { email, password, name } = req.body;
     const user = await UserModel.create({ email, password, name});
-    res.redirect(`/user/${user._id}`);
+    const token = jwt.sign({ sub: user._id }, process.env.JWT_SECRET);
+    // res.redirect(`/user/${user._id}`);
+    res.json(token);
 }
 
 async function index(req, res) {
-    const { id } = req.params;
-    const user = await UserModel.findById(id);
-
-    res.json(user);
+    res.json(req.user);
 }
 
 async function login(req, res) {
@@ -39,10 +38,16 @@ async function update(req, res) {
     res.redirect(`/user/${user._id}`);
 }
 
+function generateJWT(req, res) {
+    const token = jwt.sign({ sub: req.user._id }, process.env.JWT_SECRET);
+    res.json(token);
+}
+
 module.exports = {
     create,
     index,
     home_page,
     login,
-    update
+    update,
+    generateJWT
 }
